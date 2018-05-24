@@ -9,7 +9,8 @@
 
                     <div class="card-body">
                         <article>
-                            <h4>{{ $thread->title }}</h4>
+                            <h4>
+                                <a href="">{{ $thread->creator->name  }}</a> posted: {{ $thread->title }}</h4>
                             <p>{{ $thread->body }}</p>
                         </article>
                     </div>
@@ -23,12 +24,7 @@
                 <div class="card">
                     <div class="card-header">Replies on the thread</div>
                     @foreach ($thread->replies as $reply)
-                    <div class="card-body">
-                        <article>
-                            <h4>Created by {{ $reply->owner->name }} at {{ $reply->created_at->diffForHumans() }}</h4>
-                            <p>{{ $reply->body }}</p>
-                        </article>
-                    </div>
+                        @include('threads.reply')
                     @endforeach
                 </div>
             </div>
