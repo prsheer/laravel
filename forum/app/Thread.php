@@ -10,4 +10,9 @@ class Thread extends Model
     {
         return DIRECTORY_SEPARATOR . 'threads' . DIRECTORY_SEPARATOR . $this->id;
     }
+
+    public function replies()
+    {
+       return $this->hasMany(Reply::class);
+    }
 }
