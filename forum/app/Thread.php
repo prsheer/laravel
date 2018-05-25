@@ -10,12 +10,12 @@ class Thread extends Model
 
     public function path()
     {
-        return DIRECTORY_SEPARATOR . 'threads' . DIRECTORY_SEPARATOR . $this->id;
+        return DIRECTORY_SEPARATOR . 'threads' . DIRECTORY_SEPARATOR . $this->channel->slug . DIRECTORY_SEPARATOR . $this->id;
     }
 
     public function replies()
     {
-       return $this->hasMany(Reply::class);
+        return $this->hasMany(Reply::class);
     }
 
     public function creator()
@@ -26,5 +26,10 @@ class Thread extends Model
     public function addReply($reply)
     {
         $this->replies()->create($reply);
+    }
+
+    public function channel()
+    {
+        return $this->belongsTo(Channel::class);
     }
 }
